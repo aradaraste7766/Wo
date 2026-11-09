@@ -242,59 +242,6 @@
     border-color: var(--red-soft);
   }
 
-  /* Theme Dropdown */
-  .theme-dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  .theme-dropdown {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: var(--navy-card);
-    border: 2px solid var(--teal-dim);
-    border-radius: 12px;
-    padding: 8px;
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 9999;
-    min-width: 180px;
-    box-shadow: 0 10px 40px var(--shadow);
-    max-height: 400px;
-    overflow-y: auto;
-  }
-  .theme-dropdown.show { display: flex; }
-  .theme-option {
-    background: var(--glass);
-    border: 1px solid transparent;
-    color: var(--text-main);
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: right;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.2s;
-    font-weight: 500;
-  }
-  .theme-option:hover { 
-    background: var(--glass); 
-    border-color: var(--teal);
-    transform: translateX(-4px);
-  }
-  .theme-color-dot {
-    width: 16px; 
-    height: 16px; 
-    border-radius: 50%; 
-    display: inline-block;
-    border: 2px solid var(--border);
-    flex-shrink: 0;
-  }
-
   /* ===== GRID ===== */
   .grid{
     display: grid;
@@ -1303,6 +1250,85 @@
     color: var(--text-dim);
   }
 
+  /* ===== THEME MODAL (NEW) ===== */
+  .theme-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3500;
+    padding: 20px;
+  }
+  .theme-modal-overlay.show {
+    display: flex; 
+    animation: fadeIn 0.3s ease;
+  }
+  .theme-modal-box {
+    background: var(--navy-card);
+    border: 2px solid var(--teal);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px var(--shadow);
+  }
+  .theme-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .theme-modal-header h3 {
+    color: var(--teal);
+    font-size: 1.1rem;
+  }
+  .theme-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .theme-modal-body::-webkit-scrollbar{width: 6px;}
+  .theme-modal-body::-webkit-scrollbar-thumb{background: var(--border); border-radius: 3px;}
+  
+  .theme-option-btn {
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+  .theme-option-btn:hover {
+    border-color: var(--teal);
+    background: var(--glass);
+    transform: translateX(-4px);
+  }
+  .theme-color-dot {
+    width: 18px; 
+    height: 18px; 
+    border-radius: 50%; 
+    display: inline-block;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+  }
+
   /* ===== FOOTER ===== */
   footer{
     text-align: center;
@@ -1332,16 +1358,15 @@
     .quote-inline{min-width: 0;}
     .header-actions{justify-content: flex-end;}
     
-    /* ریسپانسیو کردن منوی تم برای موبایل */
-    .theme-dropdown {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 300px;
-      right: auto;
-      max-height: 80vh;
+    .theme-modal-body {
+      grid-template-columns: 1fr 1fr;
+    }
+    .theme-option-btn {
+      font-size: 0.8rem;
+      padding: 10px;
+      flex-direction: column;
+      text-align: center;
+      gap: 6px;
     }
   }
 
@@ -1360,7 +1385,7 @@
     <div class="header-top">
       <div class="header-title-block">
         <h1>📓 دفترچه برنامه‌ریزی روزانه</h1>
-        <div class="subtitle"></div>
+        <div class="subtitle">پایه دهم — رشته ریاضی و فیزیک | دانش‌آموز خفن 🚀</div>
       </div>
       <div class="quote-inline">
         <span id="quoteBox">...</span>
@@ -1375,41 +1400,9 @@
       <span class="info-chip" id="progressChip">✅ ۰٪ انجام شده</span>
       
       <div class="header-actions">
-        <div class="theme-dropdown-wrapper">
-          <button class="btn-header-action" onclick="toggleThemeDropdown(event)" title="تغییر تم">
-            🎨 تغییر تم
-          </button>
-          <div class="theme-dropdown" id="themeDropdown">
-            <button class="theme-option" onclick="changeTheme('purple')">
-              <span class="theme-color-dot" style="background: #ff66c4;"></span> بنفش-صورتی
-            </button>
-            <button class="theme-option" onclick="changeTheme('green')">
-              <span class="theme-color-dot" style="background: #00fa9a;"></span> سبز جنگلی
-            </button>
-            <button class="theme-option" onclick="changeTheme('blue')">
-              <span class="theme-color-dot" style="background: #4fc3f7;"></span> آبی نفتی
-            </button>
-            <button class="theme-option" onclick="changeTheme('red')">
-              <span class="theme-color-dot" style="background: #ff5252;"></span> قرمز خون
-            </button>
-            <button class="theme-option" onclick="changeTheme('orange')">
-              <span class="theme-color-dot" style="background: #ff9800;"></span> نارنجی-مسی
-            </button>
-            <button class="theme-option" onclick="changeTheme('cyan')">
-              <span class="theme-color-dot" style="background: #00e5ff;"></span> فیروزه‌ای
-            </button>
-            <hr style="border-color: var(--border); margin: 4px 0;">
-            <button class="theme-option" onclick="changeTheme('light')">
-              <span class="theme-color-dot" style="background: #6c5ce7;"></span> ☀️ روشن کلاسیک
-            </button>
-            <button class="theme-option" onclick="changeTheme('pink-light')">
-              <span class="theme-color-dot" style="background: #e84393;"></span> 🌸 صورتی روشن
-            </button>
-            <button class="theme-option" onclick="changeTheme('green-light')">
-              <span class="theme-color-dot" style="background: #10b981;"></span> 🍃 سبز روشن
-            </button>
-          </div>
-        </div>
+        <button class="btn-header-action" onclick="toggleThemeModal()" title="تغییر تم">
+          🎨 تغییر تم
+        </button>
         <button class="btn-header-action btn-header-reset" onclick="resetDay()" title="ریست کل اطلاعات امروز">
           🔄 ریست روز
         </button>
@@ -1679,6 +1672,7 @@
   </div>
 
   <footer>
+    ساخته‌شده با 💙 برای دانش‌آموز دهم ریاضی | هر روز یه قدم به جلو 🚀
   </footer>
 
 </div>
@@ -1696,7 +1690,7 @@
   </div>
 </div>
 
-<!-- MODAL OVERLAY -->
+<!-- MODAL OVERLAY (برای مشاهده و ویرایش آرشیو) -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
     <div class="modal-header">
@@ -1707,6 +1701,46 @@
   </div>
 </div>
 
+<!-- THEME MODAL OVERLAY (برای انتخاب تم) -->
+<div class="theme-modal-overlay" id="themeModalOverlay">
+  <div class="theme-modal-box">
+    <div class="theme-modal-header">
+      <h3>🎨 انتخاب تم</h3>
+      <button class="modal-close" onclick="toggleThemeModal()">✕</button>
+    </div>
+    <div class="theme-modal-body">
+      <button class="theme-option-btn" onclick="changeTheme('purple')">
+        <span class="theme-color-dot" style="background: #ff66c4;"></span> بنفش-صورتی
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('green')">
+        <span class="theme-color-dot" style="background: #00fa9a;"></span> سبز جنگلی
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('blue')">
+        <span class="theme-color-dot" style="background: #4fc3f7;"></span> آبی نفتی
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('red')">
+        <span class="theme-color-dot" style="background: #ff5252;"></span> قرمز خون
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('orange')">
+        <span class="theme-color-dot" style="background: #ff9800;"></span> نارنجی-مسی
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('cyan')">
+        <span class="theme-color-dot" style="background: #00e5ff;"></span> فیروزه‌ای
+      </button>
+      <hr style="border-color: var(--border); margin: 4px 0; grid-column: 1 / -1;">
+      <button class="theme-option-btn" onclick="changeTheme('light')">
+        <span class="theme-color-dot" style="background: #6c5ce7;"></span> ☀️ روشن کلاسیک
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('pink-light')">
+        <span class="theme-color-dot" style="background: #e84393;"></span> 🌸 صورتی روشن
+      </button>
+      <button class="theme-option-btn" onclick="changeTheme('green-light')">
+        <span class="theme-color-dot" style="background: #10b981;"></span> 🍃 سبز روشن
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    THEME MANAGEMENT
@@ -1714,14 +1748,20 @@
 function changeTheme(themeName) {
   document.body.setAttribute('data-theme', themeName);
   localStorage.setItem('dahomRiaziTheme', themeName);
-  document.getElementById('themeDropdown').classList.remove('show');
+  toggleThemeModal(); // Close modal after selection
 }
 
-function toggleThemeDropdown(e) {
-  e.stopPropagation();
-  const dropdown = document.getElementById('themeDropdown');
-  dropdown.classList.toggle('show');
+function toggleThemeModal() {
+  const modal = document.getElementById('themeModalOverlay');
+  modal.classList.toggle('show');
 }
+
+// Close theme modal when clicking outside
+document.getElementById('themeModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    toggleThemeModal();
+  }
+});
 
 function loadTheme() {
   const savedTheme = localStorage.getItem('dahomRiaziTheme');
@@ -1729,16 +1769,6 @@ function loadTheme() {
     document.body.setAttribute('data-theme', savedTheme);
   }
 }
-
-// Close dropdown when clicking outside
-window.addEventListener('click', (e) => {
-  const dropdown = document.getElementById('themeDropdown');
-  if (dropdown && dropdown.classList.contains('show')) {
-    if (!e.target.closest('.theme-dropdown-wrapper')) {
-      dropdown.classList.remove('show');
-    }
-  }
-});
 
 /* ============================================================
    JALALI (SHAMSI) DATE CONVERTER
@@ -1803,31 +1833,15 @@ function getJalaliDayOfYear(date) {
 /* ============================================================
    DATA & STORAGE
    ============================================================ */
-const STORAGE_KEY = 'dahomRiaziPlannerV11';
-const HISTORY_KEY = 'dahomRiaziHistoryV8';
+const STORAGE_KEY = 'dahomRiaziPlannerV12';
+const HISTORY_KEY = 'dahomRiaziHistoryV9';
 const TG_KEY = 'dahomRiaziTelegramSettings';
 
 let state = {
-  todos: [],
-  timetable: [],
-  habits: {},
-  subjects: {},
-  mood: null,
-  water: 0,
-  studySessions: 0,
-  timerMinutes: 25,
-  alarmType: 'beep',
-  sleep: {start:'', end:''},
-  weekly: ['','',''],
-  topPriority: '',
-  gratitude: '',
-  bestThing: '',
-  improve: '',
-  freeNotes: '',
-  deepWork: '',
-  reminders: [],
-  achievements: [],
-  date: new Date().toDateString()
+  todos: [], timetable: [], habits: {}, subjects: {}, mood: null, water: 0, studySessions: 0,
+  timerMinutes: 25, alarmType: 'beep', sleep: {start:'', end:''}, weekly: ['','',''],
+  topPriority: '', gratitude: '', bestThing: '', improve: '', freeNotes: '', deepWork: '',
+  reminders: [], achievements: [], date: new Date().toDateString()
 };
 
 let historyDB = {}; 
@@ -1916,10 +1930,7 @@ function archiveCurrentDay(showToast = false, customState = null) {
                   (dataToSave.mood) ||
                   (dataToSave.reminders && dataToSave.reminders.length > 0);
 
-  if(!hasData && !showToast) {
-    console.log('روز خالی است، آرشیو نشد.');
-    return; 
-  }
+  if(!hasData && !showToast) return;
 
   const dateKey = dataToSave.date; 
   const remindersSnapshot = (dataToSave.reminders || []).map(r => ({...r}));
