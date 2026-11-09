@@ -82,6 +82,16 @@
     --shadow: rgba(16, 185, 129, 0.15); --glass: rgba(16, 185, 129, 0.05);
   }
 
+  /* ✅ رفع مشکل اسکرول افقی در کل صفحه */
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box;}
 
   body{
@@ -92,10 +102,9 @@
     padding: 20px;
     line-height: 1.8;
     transition: background 0.4s ease, color 0.4s ease;
-    overflow-x: hidden; /* جلوگیری از اسکرول افقی */
   }
 
-  .container{max-width: 1200px; margin: 0 auto;}
+  .container{max-width: 1200px; margin: 0 auto; width: 100%;}
 
   /* ===== HEADER ===== */
   header{
@@ -304,6 +313,7 @@
     font-size: 0.9rem;
     outline: none;
     transition: border-color 0.2s;
+    width: 100%;
   }
   input[type="text"]:focus, input[type="time"]:focus, input[type="date"]:focus, input[type="number"]:focus, select:focus, textarea:focus{
     border-color: var(--teal);
@@ -317,7 +327,7 @@
     margin-bottom: 12px;
   }
   .todo-input-group input{flex:1;}
-  .todo-input-group select{width: 90px; cursor: pointer;}
+  .todo-input-group select{width: 90px; cursor: pointer; flex-shrink: 0;}
 
   .btn{
     background: linear-gradient(135deg, var(--teal-dim), var(--teal));
@@ -332,6 +342,7 @@
     transition: all 0.2s;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
   }
   .btn:hover{transform: scale(1.05); box-shadow: 0 4px 15px var(--shadow);}
@@ -747,6 +758,8 @@
     opacity: 0;
     transition: all 0.3s ease;
     box-shadow: 0 5px 25px var(--shadow);
+    max-width: 90vw;
+    text-align: center;
   }
   .toast.show{transform: translateX(-50%) translateY(0); opacity: 1;}
 
@@ -762,6 +775,7 @@
     z-index: 2000;
     flex-direction: column;
     gap: 20px;
+    padding: 20px;
   }
   .alarm-overlay.show{display: flex; animation: fadeIn 0.3s ease;}
   @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
@@ -769,10 +783,12 @@
     background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
     border: 3px solid var(--gold);
     border-radius: 24px;
-    padding: 40px 60px;
+    padding: 40px 30px;
     text-align: center;
     box-shadow: 0 0 60px rgba(255,209,102,0.3);
     animation: alarmPulse 1s ease-in-out infinite;
+    width: 100%;
+    max-width: 400px;
   }
   @keyframes alarmPulse{
     0%,100%{transform: scale(1); box-shadow: 0 0 60px rgba(255,209,102,0.3);}
@@ -869,6 +885,7 @@
     font-size: 0.82rem;
     cursor: pointer;
     margin-top: 8px;
+    width: 100%;
   }
   .settings-toggle:hover{border-color: var(--gold); color: var(--gold);}
   .settings-panel{
@@ -988,6 +1005,8 @@
     justify-content: space-between;
     border-bottom: 1px dashed var(--border);
     padding-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 5px;
   }
   .history-date .h-badge{
     font-size: 0.75rem;
@@ -1055,6 +1074,7 @@
     display: flex;
     gap: 8px;
     margin-top: auto;
+    flex-wrap: wrap;
   }
   .history-btn{
     flex: 1;
@@ -1071,6 +1091,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
+    white-space: nowrap;
   }
   .history-btn.view{border-color: var(--teal); color: var(--teal);}
   .history-btn.view:hover{background: var(--glass);}
@@ -1108,6 +1129,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 50px var(--shadow);
+    overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
   }
   .modal-header{
     padding: 15px 20px;
@@ -1186,6 +1208,7 @@
     padding: 8px 12px;
     border-radius: 8px;
     border: 1px solid var(--border);
+    flex-wrap: wrap;
   }
   .modal-reminder-item.done {
     border-color: var(--green-soft);
@@ -1193,7 +1216,7 @@
     opacity: 0.7;
   }
   .modal-reminder-icon { font-size: 1.2rem; }
-  .modal-reminder-content { flex: 1; }
+  .modal-reminder-content { flex: 1; min-width: 150px; }
   .modal-reminder-title { font-size: 0.85rem; font-weight: 600; }
   .modal-reminder-item.done .modal-reminder-title { text-decoration: line-through; color: var(--text-dim); }
   .modal-reminder-meta { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
@@ -1236,6 +1259,7 @@
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--border);
+    flex-wrap: wrap;
   }
   .edit-todo-item.done {
     border-color: var(--green-soft);
@@ -1244,6 +1268,7 @@
   .edit-todo-text {
     flex: 1;
     font-size: 0.88rem;
+    min-width: 120px;
   }
   .edit-todo-item.done .edit-todo-text {
     text-decoration: line-through;
@@ -1260,7 +1285,7 @@
     align-items: center;
     justify-content: center;
     z-index: 3500;
-    padding: 20px;
+    padding: 15px; /* فاصله ایمن از لبه‌های صفحه */
   }
   .theme-modal-overlay.show {
     display: flex; 
@@ -1276,6 +1301,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 50px var(--shadow);
+    overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
   }
   .theme-modal-header {
     padding: 15px 20px;
@@ -1289,7 +1315,7 @@
     font-size: 1.1rem;
   }
   .theme-modal-body {
-    padding: 20px;
+    padding: 15px;
     overflow-y: auto;
     flex: 1;
     display: grid;
@@ -1345,6 +1371,9 @@
     .reminder-form input:first-child{grid-column: 1 / -1;}
     .history-grid{grid-template-columns: 1fr;}
     .summary-divider{display: none;}
+    .history-actions{flex-direction: column;}
+    .modal-reminder-item{flex-direction: column; align-items: stretch;}
+    .edit-todo-item{flex-direction: column; align-items: stretch;}
   }
   @media (max-width: 600px){
     body{padding: 10px;}
@@ -1833,8 +1862,8 @@ function getJalaliDayOfYear(date) {
 /* ============================================================
    DATA & STORAGE
    ============================================================ */
-const STORAGE_KEY = 'dahomRiaziPlannerV12';
-const HISTORY_KEY = 'dahomRiaziHistoryV9';
+const STORAGE_KEY = 'dahomRiaziPlannerV13';
+const HISTORY_KEY = 'dahomRiaziHistoryV10';
 const TG_KEY = 'dahomRiaziTelegramSettings';
 
 let state = {
