@@ -6,8 +6,10 @@
 <title>دفترچه برنامه‌ریزی روزانه | پایه دهم ریاضی</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    /* تم بنفش - صورتی */
+  /* ============================================================
+     THEMES
+     ============================================================ */
+  :root, [data-theme="purple"] {
     --navy-deep: #140b24;
     --navy-mid: #1c1033;
     --navy-light: #2d1b4e;
@@ -26,15 +28,111 @@
     --border: #3a235e;
   }
 
+  [data-theme="green"] {
+    --navy-deep: #061a0e;
+    --navy-mid: #0a2616;
+    --navy-light: #11331f;
+    --navy-card: #0c2a18;
+    
+    --teal: #00fa9a;
+    --teal-dim: #00c97a;
+    --blue-accent: #4ade80;
+    --gold: #ffd166;
+    --red-soft: #ff6b6b;
+    --green-soft: #22c55e;
+    --purple-soft: #a7f3d0;
+    
+    --text-main: #ecfdf5;
+    --text-dim: #86efac;
+    --border: #166534;
+  }
+
+  [data-theme="blue"] {
+    --navy-deep: #0b132b;
+    --navy-mid: #14213d;
+    --navy-light: #1c2b4a;
+    --navy-card: #101c36;
+    
+    --teal: #4fc3f7;
+    --teal-dim: #2980b9;
+    --blue-accent: #8ab4f8;
+    --gold: #ffd166;
+    --red-soft: #f87171;
+    --green-soft: #34d399;
+    --purple-soft: #a78bfa;
+    
+    --text-main: #e3f2fd;
+    --text-dim: #90caf9;
+    --border: #1e3a8a;
+  }
+
+  [data-theme="red"] {
+    --navy-deep: #1a0505;
+    --navy-mid: #2b0a0a;
+    --navy-light: #421010;
+    --navy-card: #2e0808;
+    
+    --teal: #ff5252;
+    --teal-dim: #b71c1c;
+    --blue-accent: #ff8a80;
+    --gold: #ffca28;
+    --red-soft: #ff1744;
+    --green-soft: #69f0ae;
+    --purple-soft: #e57373;
+    
+    --text-main: #ffebee;
+    --text-dim: #ef9a9a;
+    --border: #641b1b;
+  }
+
+  [data-theme="orange"] {
+    --navy-deep: #1e0e05;
+    --navy-mid: #2e170a;
+    --navy-light: #42230f;
+    --navy-card: #2e1608;
+    
+    --teal: #ff9800;
+    --teal-dim: #e65100;
+    --blue-accent: #ffb74d;
+    --gold: #ffd54f;
+    --red-soft: #ff5252;
+    --green-soft: #4ade80;
+    --purple-soft: #ffcc80;
+    
+    --text-main: #fff3e0;
+    --text-dim: #ffcc80;
+    --border: #6b2a11;
+  }
+
+  [data-theme="cyan"] {
+    --navy-deep: #041a1c;
+    --navy-mid: #082a2e;
+    --navy-light: #0e3b40;
+    --navy-card: #0a2e33;
+    
+    --teal: #00e5ff;
+    --teal-dim: #00838f;
+    --blue-accent: #18ffff;
+    --gold: #ffd166;
+    --red-soft: #ff4d6d;
+    --green-soft: #1de9b6;
+    --purple-soft: #84ffff;
+    
+    --text-main: #e0f7fa;
+    --text-dim: #80deea;
+    --border: #0b5b63;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box;}
 
   body{
     font-family:'Vazirmatn', sans-serif;
-    background: linear-gradient(135deg, var(--navy-deep) 0%, #1a0f2e 50%, var(--navy-deep) 100%);
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 50%, var(--navy-deep) 100%);
     color: var(--text-main);
     min-height: 100vh;
     padding: 20px;
     line-height: 1.8;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 
   .container{max-width: 1200px; margin: 0 auto;}
@@ -46,17 +144,19 @@
     border-radius: 20px;
     padding: 25px 30px;
     margin-bottom: 25px;
-    box-shadow: 0 0 30px rgba(255, 102, 196, 0.15);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
     position: relative;
-    overflow: hidden;
+    z-index: 10; /* برای اینکه منوی کشویی روش باز بشه */
+    transition: all 0.4s ease;
   }
   header::before{
     content:'';
     position:absolute;
     top:-50%; right:-50%;
     width:200%; height:200%;
-    background: radial-gradient(circle, rgba(255,102,196,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
     animation: pulse 6s ease-in-out infinite;
+    pointer-events: none;
   }
   @keyframes pulse{
     0%,100%{transform: scale(1); opacity:0.5;}
@@ -69,13 +169,13 @@
     justify-content: space-between;
     gap: 15px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   .header-title-block{flex: 1; min-width: 250px;}
   header h1{
     font-size: 1.8rem;
     font-weight: 800;
-    background: linear-gradient(90deg, var(--teal), var(--purple-soft), var(--gold));
+    background: linear-gradient(90deg, var(--teal), var(--blue-accent), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -89,7 +189,7 @@
   .quote-inline{
     flex: 1;
     min-width: 280px;
-    background: linear-gradient(135deg, rgba(255,102,196,0.08), rgba(209,125,255,0.08));
+    background: rgba(255,255,255,0.03);
     border: 1px dashed var(--teal-dim);
     border-radius: 12px;
     padding: 12px 18px;
@@ -101,6 +201,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    transition: border-color 0.4s;
   }
   .quote-inline span{flex: 1;}
   .quote-refresh{
@@ -118,7 +219,7 @@
     align-items: center;
     justify-content: center;
   }
-  .quote-refresh:hover{background: rgba(255,102,196,0.15); transform: rotate(180deg);}
+  .quote-refresh:hover{background: rgba(255,255,255,0.1); transform: rotate(180deg);}
 
   .header-info{
     display: flex;
@@ -127,10 +228,10 @@
     gap: 12px;
     margin-top: 15px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   .info-chip{
-    background: rgba(255,102,196,0.1);
+    background: rgba(255,255,255,0.05);
     border: 1px solid var(--teal-dim);
     padding: 6px 14px;
     border-radius: 30px;
@@ -139,15 +240,23 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    transition: all 0.4s;
   }
   .info-chip.gold{color: var(--gold); border-color: var(--gold); background: rgba(255,209,102,0.1);}
   .info-chip.blue{color: var(--purple-soft); border-color: var(--purple-soft); background: rgba(179,136,255,0.1);}
-  .info-chip.purple{color: #ff8ae2; border-color: #ff8ae2; background: rgba(255,138,226,0.1);}
+  .info-chip.purple{color: var(--teal); border-color: var(--teal); background: rgba(255,138,226,0.1);}
   
-  .btn-header-reset {
-    background: rgba(255, 77, 109, 0.1);
-    border: 1px solid var(--red-soft);
-    color: var(--red-soft);
+  /* دکمه‌های هدر */
+  .header-actions{
+    display: flex;
+    gap: 8px;
+    margin-right: auto;
+    flex-wrap: wrap;
+  }
+  .btn-header-action {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text-main);
     padding: 6px 14px;
     border-radius: 30px;
     font-size: 0.82rem;
@@ -157,13 +266,71 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-right: auto;
+  }
+  .btn-header-action:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--teal);
+    transform: scale(1.05);
+  }
+  .btn-header-reset {
+    border-color: var(--red-soft);
+    color: var(--red-soft);
   }
   .btn-header-reset:hover {
     background: var(--red-soft);
-    color: var(--navy-deep);
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255,77,109,0.4);
+    color: #fff;
+    border-color: var(--red-soft);
+  }
+
+  /* Theme Dropdown */
+  .theme-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .theme-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0; /* چون راست‌چین هستیم، منو از راست باز می‌شه */
+    background: var(--navy-card);
+    border: 2px solid var(--teal-dim);
+    border-radius: 12px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 9999; /* خیلی بالا که روی همه چی بیاد */
+    min-width: 180px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  }
+  .theme-dropdown.show { display: flex; }
+  .theme-option {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid transparent;
+    color: var(--text-main);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .theme-option:hover { 
+    background: rgba(255,255,255,0.1); 
+    border-color: rgba(255,255,255,0.2);
+    transform: translateX(-4px);
+  }
+  .theme-color-dot {
+    width: 16px; 
+    height: 16px; 
+    border-radius: 50%; 
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
   }
 
   /* ===== GRID ===== */
@@ -193,7 +360,7 @@
   .card:hover{
     border-color: var(--teal-dim);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255,102,196,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   }
   .card::after{
     content:'';
@@ -244,7 +411,7 @@
 
   .btn{
     background: linear-gradient(135deg, var(--teal-dim), var(--teal));
-    color: #1a0f2e;
+    color: var(--navy-deep);
     border: none;
     padding: 10px 18px;
     border-radius: 10px;
@@ -257,7 +424,7 @@
     align-items: center;
     gap: 6px;
   }
-  .btn:hover{transform: scale(1.05); box-shadow: 0 4px 15px rgba(255,102,196,0.4);}
+  .btn:hover{transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
   .btn:active{transform: scale(0.98);}
   .btn-ghost{
     background: transparent;
@@ -300,7 +467,7 @@
     font-size: 0.7rem;
     padding: 2px 8px;
     border-radius: 20px;
-    background: rgba(255,102,196,0.15);
+    background: rgba(255,255,255,0.1);
     color: var(--teal);
     white-space: nowrap;
   }
@@ -380,9 +547,9 @@
   }
   .habit-item:hover{border-color: var(--teal-dim);}
   .habit-item.active{
-    background: rgba(255,102,196,0.1);
+    background: rgba(255,255,255,0.1);
     border-color: var(--teal);
-    box-shadow: 0 0 15px rgba(255,102,196,0.2);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
   }
   .habit-item .habit-icon{font-size: 1.8rem; display: block; margin-bottom: 4px;}
   .habit-item .habit-name{font-size: 0.82rem; color: var(--text-main);}
@@ -429,7 +596,7 @@
     font-size: 0.72rem;
     padding: 2px 8px;
     border-radius: 20px;
-    background: rgba(179,136,255,0.15);
+    background: rgba(255,255,255,0.1);
     color: var(--purple-soft);
     white-space: nowrap;
   }
@@ -460,7 +627,7 @@
   .timer-settings button.active, .timer-settings button:hover{
     border-color: var(--teal);
     color: var(--teal);
-    background: rgba(255,102,196,0.1);
+    background: rgba(255,255,255,0.05);
   }
   .custom-timer-row{
     display: flex;
@@ -482,10 +649,10 @@
     color: var(--teal);
     font-variant-numeric: tabular-nums;
     margin: 5px 0;
-    text-shadow: 0 0 20px rgba(255,102,196,0.3);
+    text-shadow: 0 0 20px rgba(0,0,0,0.3);
     transition: color 0.3s;
   }
-  .pomo-display.running{color: var(--gold); text-shadow: 0 0 25px rgba(255,209,102,0.5);}
+  .pomo-display.running{color: var(--gold); text-shadow: 0 0 25px rgba(255,209,102,0.3);}
   .pomo-controls{display: flex; gap: 10px; justify-content: center; margin-top: 12px;}
   .pomo-count{font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;}
 
@@ -510,12 +677,12 @@
   .alarm-btn.active, .alarm-btn:hover{
     border-color: var(--gold);
     color: var(--gold);
-    background: rgba(255,209,102,0.1);
+    background: rgba(255,255,255,0.05);
   }
 
   /* ===== ACHIEVEMENTS ===== */
   .achievements-section{
-    background: linear-gradient(135deg, rgba(255,102,196,0.05), rgba(179,136,255,0.05));
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
     border: 1px solid var(--purple-soft);
   }
   .achievements-section::after{background: linear-gradient(to bottom, var(--purple-soft), transparent);}
@@ -566,7 +733,7 @@
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--purple-soft);
-    text-shadow: 0 0 15px rgba(179,136,255,0.5);
+    text-shadow: 0 0 15px rgba(255,255,255,0.2);
   }
   .achievement-count-box .label{font-size: 0.85rem; color: var(--text-dim);}
 
@@ -582,7 +749,7 @@
     transition: all 0.2s;
   }
   .mood-btn:hover{transform: scale(1.1);}
-  .mood-btn.active{border-color: var(--teal); background: rgba(255,102,196,0.15); transform: scale(1.1);}
+  .mood-btn.active{border-color: var(--teal); background: rgba(255,255,255,0.1); transform: scale(1.1);}
 
   /* ===== PROGRESS ===== */
   .progress-bar{
@@ -666,10 +833,10 @@
     padding: 12px 24px;
     border-radius: 12px;
     font-size: 0.9rem;
-    z-index: 1000;
+    z-index: 10000;
     opacity: 0;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 25px rgba(255,102,196,0.3);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
   }
   .toast.show{transform: translateX(-50%) translateY(0); opacity: 1;}
 
@@ -677,7 +844,7 @@
   .alarm-overlay{
     position: fixed;
     inset: 0;
-    background: rgba(20,11,36,0.92);
+    background: rgba(0,0,0,0.8);
     backdrop-filter: blur(8px);
     display: none;
     align-items: center;
@@ -694,12 +861,12 @@
     border-radius: 24px;
     padding: 40px 60px;
     text-align: center;
-    box-shadow: 0 0 60px rgba(255,209,102,0.5);
+    box-shadow: 0 0 60px rgba(255,209,102,0.3);
     animation: alarmPulse 1s ease-in-out infinite;
   }
   @keyframes alarmPulse{
-    0%,100%{transform: scale(1); box-shadow: 0 0 60px rgba(255,209,102,0.5);}
-    50%{transform: scale(1.03); box-shadow: 0 0 90px rgba(255,209,102,0.8);}
+    0%,100%{transform: scale(1); box-shadow: 0 0 60px rgba(255,209,102,0.3);}
+    50%{transform: scale(1.03); box-shadow: 0 0 90px rgba(255,209,102,0.5);}
   }
   .alarm-icon{font-size: 5rem; animation: shake 0.5s ease-in-out infinite;}
   @keyframes shake{
@@ -721,7 +888,7 @@
     margin-bottom: 20px;
   }
   .final-report-card{
-    background: linear-gradient(135deg, rgba(255,102,196,0.06), rgba(209,125,255,0.06));
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
     border: 2px solid var(--blue-accent);
     border-radius: 18px;
     padding: 22px;
@@ -768,19 +935,19 @@
   .report-actions{display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;}
   .btn-blue{
     background: linear-gradient(135deg, var(--blue-accent), #b05cff);
-    color: #1a0f2e;
+    color: var(--navy-deep);
   }
-  .btn-blue:hover{box-shadow: 0 4px 15px rgba(209,125,255,0.4);}
+  .btn-blue:hover{box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
   .btn-purple{
     background: linear-gradient(135deg, var(--purple-soft), #8e4dff);
-    color: #1a0f2e;
+    color: var(--navy-deep);
   }
-  .btn-purple:hover{box-shadow: 0 4px 15px rgba(179,136,255,0.4);}
+  .btn-purple:hover{box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
   .btn-gold{
     background: linear-gradient(135deg, var(--gold), #ffb703);
-    color: #1a0f2e;
+    color: var(--navy-deep);
   }
-  .btn-gold:hover{box-shadow: 0 4px 15px rgba(255,209,102,0.4);}
+  .btn-gold:hover{box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
 
   .settings-toggle{
     background: transparent;
@@ -817,7 +984,7 @@
 
   /* ===== DATABASE / HISTORY SECTION ===== */
   .history-section{
-    background: linear-gradient(135deg, rgba(209,125,255,0.05), rgba(255,102,196,0.05));
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
     border: 2px solid var(--purple-soft);
     border-radius: 18px;
     padding: 22px;
@@ -841,9 +1008,8 @@
     gap: 8px;
   }
 
-  /* باکس خلاصه آمار بالای آرشیو */
   .history-summary-box{
-    background: linear-gradient(135deg, rgba(255,102,196,0.15), rgba(209,125,255,0.15));
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
     border: 1px solid var(--teal-dim);
     border-radius: 12px;
     padding: 15px;
@@ -865,7 +1031,7 @@
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--gold);
-    text-shadow: 0 0 15px rgba(255,209,102,0.4);
+    text-shadow: 0 0 15px rgba(0,0,0,0.3);
   }
   .summary-item .s-label{
     font-size: 0.8rem;
@@ -901,7 +1067,7 @@
   .history-item:hover{
     border-color: var(--teal);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255,102,196,0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   }
   .history-date{
     font-weight: 800;
@@ -915,14 +1081,13 @@
   }
   .history-date .h-badge{
     font-size: 0.75rem;
-    background: rgba(255,102,196,0.15);
+    background: rgba(255,255,255,0.1);
     padding: 3px 8px;
     border-radius: 20px;
     font-weight: normal;
     color: var(--teal);
   }
   
-  /* آمار داخل کارت آرشیو */
   .h-stats-grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -942,9 +1107,8 @@
   .h-stat-tag .val{font-weight: 700; color: var(--purple-soft); margin-right: auto;}
   .h-stat-tag.done .val{color: var(--green-soft);}
 
-  /* هشدار یادآوری‌های انجام نشده */
   .h-alert-box{
-    background: rgba(255, 77, 109, 0.1);
+    background: rgba(255,255,255,0.05);
     border: 1px solid var(--red-soft);
     border-radius: 8px;
     padding: 8px 10px;
@@ -957,7 +1121,6 @@
   }
   .h-alert-box span{font-size: 1.2rem;}
 
-  /* پیش‌نمایش کارها داخل کارت */
   .h-todo-preview{
     display: flex;
     flex-direction: column;
@@ -1000,23 +1163,23 @@
     gap: 4px;
   }
   .history-btn.view{border-color: var(--teal); color: var(--teal);}
-  .history-btn.view:hover{background: rgba(255,102,196,0.15);}
+  .history-btn.view:hover{background: rgba(255,255,255,0.05);}
   .history-btn.edit{border-color: var(--blue-accent); color: var(--blue-accent);}
-  .history-btn.edit:hover{background: rgba(209,125,255,0.15);}
+  .history-btn.edit:hover{background: rgba(255,255,255,0.05);}
   .history-btn.del{border-color: var(--red-soft); color: var(--red-soft);}
-  .history-btn.del:hover{background: rgba(255,77,109,0.15);}
+  .history-btn.del:hover{background: rgba(255,255,255,0.05);}
   
   .btn-danger{
     background: linear-gradient(135deg, var(--red-soft), #cc0033);
     color: #fff;
   }
-  .btn-danger:hover{box-shadow: 0 4px 15px rgba(255,77,109,0.4);}
+  .btn-danger:hover{box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
 
   /* ===== MODAL ===== */
   .modal-overlay{
     position: fixed;
     inset: 0;
-    background: rgba(20,11,36,0.95);
+    background: rgba(0,0,0,0.85);
     backdrop-filter: blur(5px);
     display: none;
     align-items: center;
@@ -1034,7 +1197,7 @@
     max-height: 85vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 50px rgba(255,102,196,0.3);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
   }
   .modal-header{
     padding: 15px 20px;
@@ -1065,7 +1228,6 @@
   .modal-body::-webkit-scrollbar{width: 6px;}
   .modal-body::-webkit-scrollbar-thumb{background: var(--border); border-radius: 3px;}
 
-  /* استایل‌های مخصوص گزارش کامل داخل مودال */
   .report-section {
     background: var(--navy-deep);
     border-radius: 10px;
@@ -1091,17 +1253,16 @@
   }
   .report-tag {
     display: inline-block;
-    background: rgba(255,102,196,0.1);
+    background: rgba(255,255,255,0.05);
     color: var(--teal);
     padding: 3px 8px;
     border-radius: 6px;
     font-size: 0.8rem;
     margin-left: 4px;
     margin-bottom: 4px;
-    border: 1px solid rgba(255,102,196,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
   }
   
-  /* یادآوری‌های داخل مودال گزارش */
   .modal-reminder-list {
     display: flex;
     flex-direction: column;
@@ -1152,7 +1313,6 @@
     background: #22c55e;
   }
 
-  /* ویرایش کارهای آرشیو */
   .edit-todo-list {
     display: flex;
     flex-direction: column;
@@ -1207,6 +1367,7 @@
     .achievement-count-box .big-number{font-size: 1.6rem;}
     .header-top{flex-direction: column; align-items: stretch;}
     .quote-inline{min-width: 0;}
+    .header-actions{justify-content: flex-end;}
   }
 
   ::-webkit-scrollbar{width: 8px;}
@@ -1215,7 +1376,7 @@
   ::-webkit-scrollbar-thumb:hover{background: var(--teal-dim);}
 </style>
 </head>
-<body>
+<body data-theme="purple">
 
 <div class="container">
 
@@ -1224,7 +1385,7 @@
     <div class="header-top">
       <div class="header-title-block">
         <h1>📓 دفترچه برنامه‌ریزی روزانه</h1>
-        <div class="subtitle">پایه دهم — رشته ریاضی و فیزیک | دانش‌آموز خفن 🚀</div>
+        <div class="subtitle"></div>
       </div>
       <div class="quote-inline">
         <span id="quoteBox">...</span>
@@ -1238,9 +1399,36 @@
       <span class="info-chip purple" id="achievementChip">🏆 ۰ دستاورد</span>
       <span class="info-chip" id="progressChip">✅ ۰٪ انجام شده</span>
       
-      <button class="btn-header-reset" onclick="resetDay()" title="ریست کل اطلاعات امروز">
-        🔄 ریست روز
-      </button>
+      <div class="header-actions">
+        <div class="theme-dropdown-wrapper">
+          <button class="btn-header-action" onclick="toggleThemeDropdown(event)" title="تغییر تم">
+            🎨 تغییر تم
+          </button>
+          <div class="theme-dropdown" id="themeDropdown">
+            <button class="theme-option" onclick="changeTheme('purple')">
+              <span class="theme-color-dot" style="background: #ff66c4;"></span> بنفش-صورتی
+            </button>
+            <button class="theme-option" onclick="changeTheme('green')">
+              <span class="theme-color-dot" style="background: #00fa9a;"></span> سبز جنگلی
+            </button>
+            <button class="theme-option" onclick="changeTheme('blue')">
+              <span class="theme-color-dot" style="background: #4fc3f7;"></span> آبی نفتی
+            </button>
+            <button class="theme-option" onclick="changeTheme('red')">
+              <span class="theme-color-dot" style="background: #ff5252;"></span> قرمز خون
+            </button>
+            <button class="theme-option" onclick="changeTheme('orange')">
+              <span class="theme-color-dot" style="background: #ff9800;"></span> نارنجی-مسی
+            </button>
+            <button class="theme-option" onclick="changeTheme('cyan')">
+              <span class="theme-color-dot" style="background: #00e5ff;"></span> فیروزه‌ای
+            </button>
+          </div>
+        </div>
+        <button class="btn-header-action btn-header-reset" onclick="resetDay()" title="ریست کل اطلاعات امروز">
+          🔄 ریست روز
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1506,7 +1694,6 @@
   </div>
 
   <footer>
-    ساخته‌شده با 💙 برای دانش‌آموز دهم ریاضی | هر روز یه قدم به جلو 🚀
   </footer>
 
 </div>
@@ -1536,6 +1723,38 @@
 </div>
 
 <script>
+/* ============================================================
+   THEME MANAGEMENT
+   ============================================================ */
+function changeTheme(themeName) {
+  document.body.setAttribute('data-theme', themeName);
+  localStorage.setItem('dahomRiaziTheme', themeName);
+  document.getElementById('themeDropdown').classList.remove('show');
+}
+
+function toggleThemeDropdown(e) {
+  e.stopPropagation();
+  const dropdown = document.getElementById('themeDropdown');
+  dropdown.classList.toggle('show');
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem('dahomRiaziTheme');
+  if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+  }
+}
+
+// Close dropdown when clicking outside
+window.addEventListener('click', (e) => {
+  const dropdown = document.getElementById('themeDropdown');
+  if (dropdown && dropdown.classList.contains('show')) {
+    if (!e.target.closest('.theme-dropdown-wrapper')) {
+      dropdown.classList.remove('show');
+    }
+  }
+});
+
 /* ============================================================
    JALALI (SHAMSI) DATE CONVERTER
    ============================================================ */
@@ -1599,8 +1818,8 @@ function getJalaliDayOfYear(date) {
 /* ============================================================
    DATA & STORAGE
    ============================================================ */
-const STORAGE_KEY = 'dahomRiaziPlannerV8';
-const HISTORY_KEY = 'dahomRiaziHistoryV5';
+const STORAGE_KEY = 'dahomRiaziPlannerV10';
+const HISTORY_KEY = 'dahomRiaziHistoryV7';
 const TG_KEY = 'dahomRiaziTelegramSettings';
 
 let state = {
@@ -1642,11 +1861,9 @@ function loadState(){
   if(saved){
     try{
       const parsed = JSON.parse(saved);
-      // اگر روز عوض شده باشه
       if(parsed.date !== new Date().toDateString()){
         archiveCurrentDay(false, parsed); 
         
-        // ریست کردن دیتای روزانه (فقط برای امروز)
         state.date = new Date().toDateString();
         state.todos = []; 
         state.timetable = defaultTimetable();
@@ -1656,20 +1873,15 @@ function loadState(){
         state.water = 0;
         state.studySessions = 0;
         
-        // تنظیمات کلی حفظ میشن
         state.timerMinutes = parsed.timerMinutes || 25;
         state.alarmType = parsed.alarmType || 'beep';
         state.weekly = parsed.weekly || ['','',''];
         state.topPriority = ''; 
         state.freeNotes = ''; 
         state.sleep = {start:'', end:''}; 
-        
-        // **مهم**: یادآوری‌ها باید از دیتای قبلی لود بشن چون ممکنه هنوز انجام نشده باشن
         state.reminders = Array.isArray(parsed.reminders) ? parsed.reminders : [];
-        
         state.achievements = [];
       } else {
-        // همون روزه، همه چی رو لود کن
         state = {...state, ...parsed};
         if(!Array.isArray(state.timetable)) state.timetable = defaultTimetable();
         if(!Array.isArray(state.reminders)) state.reminders = [];
@@ -1706,7 +1918,6 @@ function defaultTimetable(){
 function archiveCurrentDay(showToast = false, customState = null) {
   const dataToSave = customState || state;
   
-  // شرط اینکه اگه روز خالی بود ذخیره نکنه (ولی یادآوری‌ها هم مهمن)
   const hasData = (dataToSave.todos && dataToSave.todos.length > 0) ||
                   (dataToSave.achievements && dataToSave.achievements.length > 0) ||
                   (dataToSave.weekly && dataToSave.weekly.some(w => w && w.trim())) ||
@@ -1718,7 +1929,7 @@ function archiveCurrentDay(showToast = false, customState = null) {
                   (dataToSave.sleep && dataToSave.sleep.start) ||
                   (dataToSave.water > 0) ||
                   (dataToSave.mood) ||
-                  (dataToSave.reminders && dataToSave.reminders.length > 0); // **اضافه شد**: یادآوری‌ها هم شرط ذخیره‌شدن دارن
+                  (dataToSave.reminders && dataToSave.reminders.length > 0);
 
   if(!hasData && !showToast) {
     console.log('روز خالی است، آرشیو نشد.');
@@ -1726,8 +1937,6 @@ function archiveCurrentDay(showToast = false, customState = null) {
   }
 
   const dateKey = dataToSave.date; 
-  
-  // کپی عمیق از یادآوری‌ها (چون یادآوری‌ها بین روزها مشترکن، یه اسنپ‌شات از وضعیتشون می‌گیریم)
   const remindersSnapshot = (dataToSave.reminders || []).map(r => ({...r}));
 
   historyDB[dateKey] = {
@@ -1747,7 +1956,6 @@ function renderHistory() {
   
   const keys = Object.keys(historyDB).sort((a,b) => new Date(b) - new Date(a)); 
 
-  // محاسبه آمار کلی
   let sumDone = 0;
   let sumTasks = 0;
   keys.forEach(k => {
@@ -1776,7 +1984,6 @@ function renderHistory() {
     const achCount = data.achievements ? data.achievements.length : 0;
     const studySessions = data.studySessions || 0;
     
-    // بررسی پر بودن فیلدها
     const hasWater = data.water > 0;
     const hasSleep = data.sleep && data.sleep.start && data.sleep.end;
     const hasAchievements = achCount > 0;
@@ -1785,7 +1992,6 @@ function renderHistory() {
     const hasPriority = data.topPriority && data.topPriority.trim();
     const hasDeepWork = data.deepWork && data.deepWork.trim();
     
-    // بررسی یادآوری‌های انجام نشده
     const pendingReminders = (data.reminders || []).filter(r => !r.done);
     const pendingRemindersCount = pendingReminders.length;
 
@@ -1804,7 +2010,6 @@ function renderHistory() {
       todoPreviewHTML += `</div>`;
     }
 
-    // هشدار یادآوری‌های انجام نشده
     let alertHTML = '';
     if (pendingRemindersCount > 0) {
       alertHTML = `<div class="h-alert-box">
@@ -1820,12 +2025,10 @@ function renderHistory() {
         ${hasTodos ? `<span class="h-badge">${doneTodos}/${totalTodos} ✅</span>` : ''}
       </div>
       
-      <!-- هشدار یادآوری -->
       ${alertHTML}
 
-      <!-- بخش اولویت و تمرکز -->
       ${(hasPriority || hasDeepWork) ? `
-        <div style="background:rgba(255,102,196,0.08); border-radius:8px; padding:8px; font-size:0.78rem; border-right:2px solid var(--teal);">
+        <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:8px; font-size:0.78rem; border-right:2px solid var(--teal);">
           ${hasPriority ? `<div>📌 <b>اولویت:</b> ${escapeHtml(data.topPriority)}</div>` : ''}
           ${hasDeepWork ? `<div>🧠 <b>تمرکز عمیق:</b> ${escapeHtml(data.deepWork)}</div>` : ''}
         </div>
@@ -1851,7 +2054,6 @@ function renderHistory() {
   });
 }
 
-/* نمایش گزارش کامل روز در مودال (با استایل پارت بندی) */
 function viewFullHistory(key) {
   const data = historyDB[key];
   if(!data) return;
@@ -1861,7 +2063,6 @@ function viewFullHistory(key) {
   
   let html = '';
 
-  // 1. اهداف هفته
   const hasWeekly = data.weekly && data.weekly.some(w => w && w.trim());
   if(hasWeekly) {
     html += `<div class="report-section">
@@ -1873,7 +2074,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 2. اولویت و تمرکز
   if((data.topPriority && data.topPriority.trim()) || (data.deepWork && data.deepWork.trim())) {
     html += `<div class="report-section">
       <div class="report-section-title">📌 اولویت و تمرکز</div>
@@ -1883,7 +2083,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 3. لیست کارها
   if(data.todos && data.todos.length > 0) {
     const doneCount = data.todos.filter(t => t.done).length;
     html += `<div class="report-section">
@@ -1897,7 +2096,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 4. یادآوری‌ها (امتحان/تکلیف)
   if(data.reminders && data.reminders.length > 0) {
     html += `<div class="report-section">
       <div class="report-section-title">🔔 یادآوری‌های تکلیف و امتحان</div>
@@ -1905,7 +2103,6 @@ function viewFullHistory(key) {
     
     data.reminders.forEach((r, idx) => {
       const icon = r.type === 'exam' ? '📄' : '📝';
-      const typeLabel = r.type === 'exam' ? 'امتحان' : 'تکلیف';
       const days = daysUntil(r.date);
       const daysText = days < 0 ? 'گذشته!' : days === 0 ? 'امروز' : days === 1 ? 'فردا' : `${toPersianNum(days)} روز دیگه`;
       
@@ -1926,7 +2123,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 5. برنامه زمانی
   const filledTimes = (data.timetable || []).filter(t => t.text && t.text.trim());
   if(filledTimes.length > 0) {
     html += `<div class="report-section">
@@ -1938,7 +2134,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 6. دروس مطالعه شده
   const studied = Object.keys(data.subjects || {}).filter(s => data.subjects[s]);
   if(studied.length > 0) {
     html += `<div class="report-section">
@@ -1950,7 +2145,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 7. عادت‌ها
   const activeHabits = habitList.filter(h => data.habits && data.habits[h.id]);
   if(activeHabits.length > 0) {
     html += `<div class="report-section">
@@ -1962,7 +2156,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 8. دستاوردها
   if(data.achievements && data.achievements.length > 0) {
     html += `<div class="report-section">
       <div class="report-section-title">🏆 دستاوردهای امروز (${toPersianNum(data.achievements.length)})</div>
@@ -1973,7 +2166,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 9. آمار سلامت
   const hasHealthData = (data.water > 0) || (data.sleep && data.sleep.start) || data.mood || (data.studySessions > 0);
   if(hasHealthData) {
     html += `<div class="report-section">
@@ -1987,7 +2179,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 10. بازتاب شبانه
   const hasReflection = (data.gratitude && data.gratitude.trim()) || (data.bestThing && data.bestThing.trim()) || (data.improve && data.improve.trim());
   if(hasReflection) {
     html += `<div class="report-section">
@@ -1999,7 +2190,6 @@ function viewFullHistory(key) {
     html += `</div></div>`;
   }
 
-  // 11. یادداشت آزاد
   if(data.freeNotes && data.freeNotes.trim()) {
     html += `<div class="report-section">
       <div class="report-section-title">📝 یادداشت‌های آزاد</div>
@@ -2013,16 +2203,13 @@ function viewFullHistory(key) {
   document.getElementById('modalOverlay').classList.add('show');
 }
 
-/* تغییر وضعیت یادآوری در دیتابیس (مودال گزارش) */
 function toggleHistoryReminder(key, reminderIdx) {
   const data = historyDB[key];
   if(!data || !data.reminders || !data.reminders[reminderIdx]) return;
   
-  // تغییر وضعیت
   data.reminders[reminderIdx].done = !data.reminders[reminderIdx].done;
   saveHistoryDB();
   
-  // آپدیت دیتای امروز هم اگر مربوط به امروزه (برای همگام‌سازی)
   const todayKey = new Date().toDateString();
   if (key === todayKey) {
     const activeReminder = state.reminders.find(r => r.id === data.reminders[reminderIdx].id);
@@ -2033,16 +2220,14 @@ function toggleHistoryReminder(key, reminderIdx) {
     }
   }
 
-  renderHistory(); // آپدیت کارت‌های آرشیو (برای کم شدن تعداد انجام نشده)
+  renderHistory(); 
   
-  // رفرش مودال
   const modalIsOpen = document.getElementById('modalOverlay').classList.contains('show');
   if (modalIsOpen) {
     viewFullHistory(key); 
   }
 }
 
-/* باز کردن مودال برای ویرایش کارهای یک روز خاص */
 function editHistory(key) {
   const data = historyDB[key];
   if(!data) return;
@@ -2842,10 +3027,8 @@ function saveAll(){ saveState(); toast('💾 همه ذخیره شد!'); }
 function resetDay(){
   if(!confirm('مطمئنی می‌خوای کل روز رو ریست کنی؟ همه کارها پاک می‌شن (ولی تو آرشیو می‌مونن)!')) return;
   
-  // قبل از ریست، ذخیره در آرشیو
   archiveCurrentDay(false);
 
-  // فقط اطلاعات امروز ریست میشه، تنظیمات (تایمر، آلارم، هفتگی، یادآوری‌ها) می‌مونن
   state.todos = [];
   state.timetable = defaultTimetable();
   state.habits = {};
@@ -3210,6 +3393,7 @@ function renderAll(){
    INIT
    ============================================================ */
 window.addEventListener('DOMContentLoaded', () => {
+  loadTheme();
   loadState();
   timerSeconds = state.timerMinutes * 60;
   renderAll();
