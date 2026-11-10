@@ -1129,7 +1129,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 50px var(--shadow);
-    overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
+    overflow: hidden; 
   }
   .modal-header{
     padding: 15px 20px;
@@ -1275,7 +1275,7 @@
     color: var(--text-dim);
   }
 
-  /* ===== THEME MODAL (NEW) ===== */
+  /* ===== THEME MODAL ===== */
   .theme-modal-overlay {
     position: fixed;
     inset: 0;
@@ -1285,7 +1285,7 @@
     align-items: center;
     justify-content: center;
     z-index: 3500;
-    padding: 15px; /* فاصله ایمن از لبه‌های صفحه */
+    padding: 15px; 
   }
   .theme-modal-overlay.show {
     display: flex; 
@@ -1301,7 +1301,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 50px var(--shadow);
-    overflow: hidden; /* جلوگیری از بیرون زدن محتوا */
+    overflow: hidden;
   }
   .theme-modal-header {
     padding: 15px 20px;
@@ -1365,6 +1365,109 @@
     border-top: 1px dashed var(--border);
   }
 
+  /* ===== NEW: EXAM BUILDER SECTION ===== */
+  .exam-section {
+    background: linear-gradient(135deg, rgba(79,195,247,0.05), rgba(209,125,255,0.05));
+    border: 2px solid var(--blue-accent);
+    border-radius: 16px;
+    margin-bottom: 20px;
+  }
+  .exam-section::after { background: linear-gradient(to bottom, var(--blue-accent), transparent); }
+  
+  .exam-top-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    background: var(--navy-deep);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed var(--border);
+  }
+  .exam-top-controls input {
+    flex: 1;
+    min-width: 150px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  
+  .exam-mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  .exam-mode-toggle label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .manual-question-form {
+    background: var(--navy-deep);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  .manual-question-form input[type="text"] { margin-bottom: 8px; }
+  .manual-options-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;
+  }
+  .manual-options-row label { font-size: 0.75rem; color: var(--text-dim); display: block; margin-bottom: 4px;}
+
+  .exam-list-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;
+  }
+  .exam-card {
+    background: var(--navy-deep); border: 1px solid var(--border); border-radius: 14px; padding: 15px; display: flex; flex-direction: column; gap: 10px; transition: all 0.2s;
+  }
+  .exam-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow); }
+  .exam-card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border); padding-bottom: 10px; }
+  .exam-card-title { font-weight: 800; color: var(--blue-accent); font-size: 1.1rem; }
+  .exam-card-count { font-size: 0.75rem; background: var(--glass); padding: 3px 8px; border-radius: 10px; color: var(--text-dim); }
+  .exam-card-desc { font-size: 0.85rem; color: var(--text-main); flex: 1; }
+  
+  /* مودال آزمون */
+  .exam-modal-box {
+    background: var(--navy-card);
+    border: 2px solid var(--teal);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px var(--shadow);
+    overflow: hidden;
+  }
+  .exam-modal-body {
+    padding: 20px; overflow-y: auto; flex: 1;
+  }
+  .exam-modal-body::-webkit-scrollbar{width: 6px;}
+  .exam-modal-body::-webkit-scrollbar-thumb{background: var(--border); border-radius: 3px;}
+  
+  .test-question-item {
+    background: var(--navy-deep); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 15px;
+  }
+  .test-q-title { font-weight: 700; color: var(--blue-accent); margin-bottom: 10px; font-size: 1rem; }
+  .test-q-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+  .test-q-options label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; cursor: pointer; padding: 5px; border-radius: 6px; border: 1px solid transparent; }
+  .test-q-options label:hover { border-color: var(--glass); background: var(--glass); }
+  .test-q-options input[type="radio"] { accent-color: var(--teal); width: 18px; height: 18px; }
+  .test-q-input { margin-top: 10px; }
+  .test-q-input input { width: 100%; padding: 10px; }
+
+  /* آرشیو سوالات */
+  .archive-exam-item { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+  .archive-exam-title { color: var(--blue-accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+  .archive-exam-q { font-size: 0.85rem; margin-bottom: 5px; }
+  .archive-exam-ans { font-size: 0.8rem; color: var(--text-dim); background: var(--glass); padding: 5px 8px; border-radius: 4px; margin-top: 5px; }
+  .archive-exam-ans.correct { color: var(--green-soft); border: 1px solid var(--green-soft); }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 700px){
     .reminder-form{grid-template-columns: 1fr 1fr;}
@@ -1374,6 +1477,9 @@
     .history-actions{flex-direction: column;}
     .modal-reminder-item{flex-direction: column; align-items: stretch;}
     .edit-todo-item{flex-direction: column; align-items: stretch;}
+    .gq-options, .archive-exam-options { grid-template-columns: 1fr; }
+    .manual-options-row { grid-template-columns: 1fr; }
+    .exam-top-controls { flex-direction: column; }
   }
   @media (max-width: 600px){
     body{padding: 10px;}
@@ -1414,7 +1520,7 @@
     <div class="header-top">
       <div class="header-title-block">
         <h1>📓 دفترچه برنامه‌ریزی روزانه</h1>
-        <div class="subtitle"></div>
+        <div class="subtitle">پایه دهم — رشته ریاضی و فیزیک | دانش‌آموز خفن 🚀</div>
       </div>
       <div class="quote-inline">
         <span id="quoteBox">...</span>
@@ -1485,19 +1591,43 @@
       <select id="remSubject">
         <option value="">درس...</option>
         <option>ریاضی ۱</option>
+        <option>حسابان ۱</option>
+        <option>حسابان ۲</option>
         <option>هندسه ۱</option>
+        <option>هندسه ۲</option>
+        <option>هندسه ۳</option>
+        <option>آمار و احتمال</option>
+        <option>ریاضیات گسسته</option>
         <option>فیزیک ۱</option>
+        <option>فیزیک ۲</option>
+        <option>فیزیک ۳</option>
         <option>شیمی ۱</option>
+        <option>شیمی ۲</option>
+        <option>شیمی ۳</option>
         <option>زیست‌شناسی ۱</option>
         <option>فارسی ۱</option>
+        <option>فارسی ۲</option>
+        <option>فارسی ۳</option>
         <option>نگارش ۱</option>
+        <option>نگارش ۲</option>
+        <option>نگارش ۳</option>
         <option>عربی ۱</option>
+        <option>عربی، زبان قرآن ۲</option>
+        <option>عربی، زبان قرآن ۳</option>
         <option>دین و زندگی ۱</option>
+        <option>دین و زندگی ۲</option>
+        <option>دین و زندگی ۳</option>
         <option>زبان انگلیسی ۱</option>
+        <option>زبان انگلیسی ۲</option>
+        <option>زبان انگلیسی ۳</option>
         <option>جغرافیا</option>
         <option>تاریخ</option>
+        <option>تاریخ معاصر ایران</option>
         <option>کارگاه کارآفرینی</option>
         <option>آمادگی دفاعی</option>
+        <option>انسان و محیط زیست</option>
+        <option>هویت اجتماعی</option>
+        <option>سلامت و بهداشت</option>
         <option>سایر</option>
       </select>
       <input type="date" id="remDate" title="تاریخ">
@@ -1515,7 +1645,7 @@
     </div>
 
     <div class="card">
-      <h2><span class="icon">📚</span> دروس دهم ریاضی (مطالعه شد؟)</h2>
+      <h2><span class="icon">📚</span> دروس دهم، یازدهم و دوازدهم ریاضی (مطالعه شد؟)</h2>
       <div class="subjects-grid" id="subjectsGrid"></div>
       <div class="progress-bar" style="margin-top:15px;">
         <div class="progress-fill" id="subjectProgress"></div>
@@ -1606,6 +1736,53 @@
     </div>
   </div>
 
+  <!-- ===== NEW: EXAM BUILDER SECTION ===== -->
+  <div class="card exam-section" style="margin-bottom: 20px;">
+    <h2><span class="icon">📝</span> آزمون‌ساز</h2>
+    
+    <div class="exam-top-controls">
+      <input type="text" id="examName" placeholder="اسم آزمون (مثلاً: ریاضی فصل ۱)">
+      <button class="btn" onclick="startNewExam()">➕ شروع ساخت آزمون</button>
+    </div>
+
+    <div class="exam-mode-toggle" id="examModeToggle" style="display:none;">
+      <label><input type="radio" name="qType" value="multiple" checked onchange="updateQuestionForm()"> گزینه‌دار (تستی)</label>
+      <label><input type="radio" name="qType" value="essay" onchange="updateQuestionForm()"> تشریحی (بدون گزینه)</label>
+    </div>
+
+    <div class="manual-question-form" id="examQuestionForm" style="display:none;">
+      <input type="text" id="qText" placeholder="متن سوال...">
+      
+      <div id="optionsContainer">
+        <div class="manual-options-row">
+          <div><label>گزینه ۱</label><input type="text" id="opt1" placeholder="گزینه ۱"></div>
+          <div><label>گزینه ۲</label><input type="text" id="opt2" placeholder="گزینه ۲"></div>
+          <div><label>گزینه ۳</label><input type="text" id="opt3" placeholder="گزینه ۳"></div>
+          <div><label>گزینه ۴</label><input type="text" id="opt4" placeholder="گزینه ۴"></div>
+        </div>
+        <select id="correctOpt" style="margin-bottom:8px; width:100%;">
+          <option value="0">گزینه صحیح: ۱</option>
+          <option value="1">گزینه صحیح: ۲</option>
+          <option value="2">گزینه صحیح: ۳</option>
+          <option value="3">گزینه صحیح: ۴</option>
+        </select>
+      </div>
+
+      <div style="margin-top:8px; margin-bottom:8px;">
+        <label style="font-size:0.75rem; color:var(--text-dim); display:block; margin-bottom:4px;">✍️ پاسخ صحیح / تشریحی (اختیاری، برای نمایش بعد از آزمون)</label>
+        <input type="text" id="correctAnswerText" placeholder="اینجا جواب درست یا توضیح رو بنویس...">
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="btn btn-sm" onclick="addQuestionToExam()">➕ افزودن به آزمون</button>
+        <button class="btn-ghost btn btn-sm" onclick="finishExamCreation()">✅ اتمام و ذخیره آزمون</button>
+      </div>
+    </div>
+
+    <div style="font-size:0.9rem; font-weight:700; color:var(--blue-accent); margin-bottom:10px; margin-top:15px;">📚 آزمون‌های آماده امروز</div>
+    <div class="exam-list-grid" id="examListGrid"></div>
+  </div>
+
   <!-- ===== GRID 5: WEEKLY TARGETS + NOTES ===== -->
   <div class="grid-2">
     <div class="card">
@@ -1674,22 +1851,12 @@
   <div class="history-section">
     <h2><span>📚</span> آرشیو روزهای گذشته (دیتابیس)</h2>
     
-    <!-- باکس خلاصه آمار -->
     <div class="history-summary-box" id="historySummaryBox">
-      <div class="summary-item">
-        <div class="s-value" id="sumTotalDone">۰</div>
-        <div class="s-label">کار انجام شده</div>
-      </div>
+      <div class="summary-item"><div class="s-value" id="sumTotalDone">۰</div><div class="s-label">کار انجام شده</div></div>
       <div class="summary-divider"></div>
-      <div class="summary-item">
-        <div class="s-value" id="sumTotalTasks">۰</div>
-        <div class="s-label">کل کارها</div>
-      </div>
+      <div class="summary-item"><div class="s-value" id="sumTotalTasks">۰</div><div class="s-label">کل کارها</div></div>
       <div class="summary-divider"></div>
-      <div class="summary-item">
-        <div class="s-value" id="sumDays">۰</div>
-        <div class="s-label">روز ثبت شده</div>
-      </div>
+      <div class="summary-item"><div class="s-value" id="sumDays">۰</div><div class="s-label">روز ثبت شده</div></div>
     </div>
 
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
@@ -1701,7 +1868,7 @@
   </div>
 
   <footer>
-   
+    ساخته‌شده با 💙 برای دانش‌آموز دهم ریاضی | هر روز یه قدم به جلو 🚀
   </footer>
 
 </div>
@@ -1730,7 +1897,21 @@
   </div>
 </div>
 
-<!-- THEME MODAL OVERLAY (برای انتخاب تم) -->
+<!-- EXAM MODAL OVERLAY (برای آزمون دادن) -->
+<div class="modal-overlay" id="examModalOverlay">
+  <div class="exam-modal-box">
+    <div class="modal-header">
+      <h3 id="examModalTitle">آزمون</h3>
+      <button class="modal-close" onclick="closeExamModal()">✕</button>
+    </div>
+    <div class="modal-body exam-modal-body" id="examModalBody"></div>
+    <div style="padding: 15px 20px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end;">
+      <button class="btn" onclick="submitExamAnswers()">✅ ثبت و پایان آزمون</button>
+    </div>
+  </div>
+</div>
+
+<!-- THEME MODAL OVERLAY -->
 <div class="theme-modal-overlay" id="themeModalOverlay">
   <div class="theme-modal-box">
     <div class="theme-modal-header">
@@ -1738,34 +1919,16 @@
       <button class="modal-close" onclick="toggleThemeModal()">✕</button>
     </div>
     <div class="theme-modal-body">
-      <button class="theme-option-btn" onclick="changeTheme('purple')">
-        <span class="theme-color-dot" style="background: #ff66c4;"></span> بنفش-صورتی
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('green')">
-        <span class="theme-color-dot" style="background: #00fa9a;"></span> سبز جنگلی
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('blue')">
-        <span class="theme-color-dot" style="background: #4fc3f7;"></span> آبی نفتی
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('red')">
-        <span class="theme-color-dot" style="background: #ff5252;"></span> قرمز خون
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('orange')">
-        <span class="theme-color-dot" style="background: #ff9800;"></span> نارنجی-مسی
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('cyan')">
-        <span class="theme-color-dot" style="background: #00e5ff;"></span> فیروزه‌ای
-      </button>
+      <button class="theme-option-btn" onclick="changeTheme('purple')"><span class="theme-color-dot" style="background: #ff66c4;"></span> بنفش-صورتی</button>
+      <button class="theme-option-btn" onclick="changeTheme('green')"><span class="theme-color-dot" style="background: #00fa9a;"></span> سبز جنگلی</button>
+      <button class="theme-option-btn" onclick="changeTheme('blue')"><span class="theme-color-dot" style="background: #4fc3f7;"></span> آبی نفتی</button>
+      <button class="theme-option-btn" onclick="changeTheme('red')"><span class="theme-color-dot" style="background: #ff5252;"></span> قرمز خون</button>
+      <button class="theme-option-btn" onclick="changeTheme('orange')"><span class="theme-color-dot" style="background: #ff9800;"></span> نارنجی-مسی</button>
+      <button class="theme-option-btn" onclick="changeTheme('cyan')"><span class="theme-color-dot" style="background: #00e5ff;"></span> فیروزه‌ای</button>
       <hr style="border-color: var(--border); margin: 4px 0; grid-column: 1 / -1;">
-      <button class="theme-option-btn" onclick="changeTheme('light')">
-        <span class="theme-color-dot" style="background: #6c5ce7;"></span> ☀️ روشن کلاسیک
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('pink-light')">
-        <span class="theme-color-dot" style="background: #e84393;"></span> 🌸 صورتی روشن
-      </button>
-      <button class="theme-option-btn" onclick="changeTheme('green-light')">
-        <span class="theme-color-dot" style="background: #10b981;"></span> 🍃 سبز روشن
-      </button>
+      <button class="theme-option-btn" onclick="changeTheme('light')"><span class="theme-color-dot" style="background: #6c5ce7;"></span> ☀️ روشن کلاسیک</button>
+      <button class="theme-option-btn" onclick="changeTheme('pink-light')"><span class="theme-color-dot" style="background: #e84393;"></span> 🌸 صورتی روشن</button>
+      <button class="theme-option-btn" onclick="changeTheme('green-light')"><span class="theme-color-dot" style="background: #10b981;"></span> 🍃 سبز روشن</button>
     </div>
   </div>
 </div>
@@ -1777,26 +1940,20 @@
 function changeTheme(themeName) {
   document.body.setAttribute('data-theme', themeName);
   localStorage.setItem('dahomRiaziTheme', themeName);
-  toggleThemeModal(); // Close modal after selection
+  toggleThemeModal(); 
 }
 
 function toggleThemeModal() {
-  const modal = document.getElementById('themeModalOverlay');
-  modal.classList.toggle('show');
+  document.getElementById('themeModalOverlay').classList.toggle('show');
 }
 
-// Close theme modal when clicking outside
 document.getElementById('themeModalOverlay').addEventListener('click', function(e) {
-  if (e.target === this) {
-    toggleThemeModal();
-  }
+  if (e.target === this) toggleThemeModal();
 });
 
 function loadTheme() {
   const savedTheme = localStorage.getItem('dahomRiaziTheme');
-  if (savedTheme) {
-    document.body.setAttribute('data-theme', savedTheme);
-  }
+  if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
 }
 
 /* ============================================================
@@ -1862,19 +2019,25 @@ function getJalaliDayOfYear(date) {
 /* ============================================================
    DATA & STORAGE
    ============================================================ */
-const STORAGE_KEY = 'dahomRiaziPlannerV13';
-const HISTORY_KEY = 'dahomRiaziHistoryV10';
+const STORAGE_KEY = 'dahomRiaziPlannerV17';
+const HISTORY_KEY = 'dahomRiaziHistoryV14';
 const TG_KEY = 'dahomRiaziTelegramSettings';
 
 let state = {
   todos: [], timetable: [], habits: {}, subjects: {}, mood: null, water: 0, studySessions: 0,
   timerMinutes: 25, alarmType: 'beep', sleep: {start:'', end:''}, weekly: ['','',''],
   topPriority: '', gratitude: '', bestThing: '', improve: '', freeNotes: '', deepWork: '',
-  reminders: [], achievements: [], date: new Date().toDateString()
+  reminders: [], achievements: [], exams: [], date: new Date().toDateString()
 };
 
 let historyDB = {}; 
 let currentEditKey = null;
+
+/* واریابل‌های آزمون */
+let currentExamBuilding = null;
+let currentExamTaking = null;
+let currentExamTakingKey = null; // برای دونستن اینکه تو آرشیو داریم جواب می‌دیم یا تو صفحه اصلی
+let userAnswers = {};
 
 function saveState(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -1909,11 +2072,13 @@ function loadState(){
         state.sleep = {start:'', end:''}; 
         state.reminders = Array.isArray(parsed.reminders) ? parsed.reminders : [];
         state.achievements = [];
+        state.exams = []; // ریست شدن آزمون‌ها برای روز جدید
       } else {
         state = {...state, ...parsed};
         if(!Array.isArray(state.timetable)) state.timetable = defaultTimetable();
         if(!Array.isArray(state.reminders)) state.reminders = [];
         if(!Array.isArray(state.achievements)) state.achievements = [];
+        if(!Array.isArray(state.exams)) state.exams = [];
       }
     }catch(e){ console.log('load error', e); state.timetable = defaultTimetable(); }
   } else {
@@ -1941,6 +2106,280 @@ function defaultTimetable(){
 }
 
 /* ============================================================
+   NEW: EXAM BUILDER LOGIC
+   ============================================================ */
+function startNewExam() {
+  const name = document.getElementById('examName').value.trim();
+  if(!name) { toast('اول اسم آزمون رو بنویس! 📝'); return; }
+  
+  currentExamBuilding = {
+    id: Date.now(),
+    name: name,
+    questions: []
+  };
+  
+  document.getElementById('examQuestionForm').style.display = 'block';
+  document.getElementById('examModeToggle').style.display = 'flex';
+  document.getElementById('examName').disabled = true;
+  toast('حالا سوالات رو یکی یکی اضافه کن 👇');
+}
+
+function updateQuestionForm() {
+  const type = document.querySelector('input[name="qType"]:checked').value;
+  const optContainer = document.getElementById('optionsContainer');
+  if(type === 'essay') {
+    optContainer.style.display = 'none';
+  } else {
+    optContainer.style.display = 'block';
+  }
+}
+
+function addQuestionToExam() {
+  const type = document.querySelector('input[name="qType"]:checked').value;
+  const qText = document.getElementById('qText').value.trim();
+  const correctAnswerText = document.getElementById('correctAnswerText').value.trim();
+  
+  if(!qText) { toast('متن سوال رو بنویس! ✍️'); return; }
+  
+  let newQ = { text: qText, type: type, correctAnswerText: correctAnswerText };
+  
+  if(type === 'multiple') {
+    const o1 = document.getElementById('opt1').value.trim();
+    const o2 = document.getElementById('opt2').value.trim();
+    const o3 = document.getElementById('opt3').value.trim();
+    const o4 = document.getElementById('opt4').value.trim();
+    const correctIdx = parseInt(document.getElementById('correctOpt').value);
+    
+    if(!o1 || !o2 || !o3 || !o4) { toast('همه ۴ گزینه رو پر کن!'); return; }
+    
+    newQ.options = [o1, o2, o3, o4];
+    newQ.correctIdx = correctIdx;
+  }
+  
+  currentExamBuilding.questions.push(newQ);
+  
+  // پاک کردن فرم
+  document.getElementById('qText').value = '';
+  document.getElementById('correctAnswerText').value = '';
+  if(type === 'multiple') {
+    document.getElementById('opt1').value = '';
+    document.getElementById('opt2').value = '';
+    document.getElementById('opt3').value = '';
+    document.getElementById('opt4').value = '';
+  }
+  
+  toast(`✅ سوال ${toPersianNum(currentExamBuilding.questions.length)} اضافه شد!`);
+}
+
+function finishExamCreation() {
+  if(!currentExamBuilding || currentExamBuilding.questions.length === 0) {
+    toast('حداقل یه سوال باید اضافه کنی!');
+    return;
+  }
+  
+  state.exams.push(currentExamBuilding);
+  saveState();
+  renderExamCards();
+  cancelExamCreation();
+  toast('💾 آزمون با موفقیت ذخیره شد!');
+}
+
+function cancelExamCreation() {
+  currentExamBuilding = null;
+  document.getElementById('examQuestionForm').style.display = 'none';
+  document.getElementById('examModeToggle').style.display = 'none';
+  document.getElementById('examName').disabled = false;
+  document.getElementById('examName').value = '';
+  document.getElementById('qText').value = '';
+  document.getElementById('correctAnswerText').value = '';
+}
+
+function renderExamCards() {
+  const grid = document.getElementById('examListGrid');
+  grid.innerHTML = '';
+  
+  if(state.exams.length === 0) {
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:var(--text-dim); font-size:0.85rem; padding:15px;">هنوز آزمونی نساختی! ✨</div>';
+    return;
+  }
+  
+  state.exams.forEach((exam, idx) => {
+    const div = document.createElement('div');
+    div.className = 'exam-card';
+    let btnHTML = '';
+    
+    if (exam.isCompleted) {
+      btnHTML = `
+        <button class="btn" style="width:100%; background:linear-gradient(135deg, var(--green-soft), #22c55e);" onclick="viewExamAnswers('${exam.id}')">👁️ مشاهده پاسخ‌ها</button>
+        <button class="btn-ghost btn" style="width:100%; font-size:0.75rem; padding:4px;" onclick="deleteExam(${idx})">🗑️ حذف آزمون</button>
+      `;
+    } else {
+      btnHTML = `
+        <button class="btn" style="width:100%;" onclick="startExamTaking(${idx})">📝 انجام آزمون</button>
+        <button class="btn-ghost btn" style="width:100%; font-size:0.75rem; padding:4px;" onclick="deleteExam(${idx})">🗑️ حذف آزمون</button>
+      `;
+    }
+
+    div.innerHTML = `
+      <div class="exam-card-header">
+        <span class="exam-card-title">📄 ${escapeHtml(exam.name)}</span>
+        <span class="exam-card-count">${toPersianNum(exam.questions.length)} سوال</span>
+      </div>
+      <div class="exam-card-desc">
+        شامل ${toPersianNum(exam.questions.filter(q => q.type === 'multiple').length)} تستی و ${toPersianNum(exam.questions.filter(q => q.type === 'essay').length)} تشریحی
+      </div>
+      ${btnHTML}
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function viewExamAnswers(examId) {
+  // پیدا کردن آزمون در استیت اصلی یا آرشیو
+  let exam = state.exams.find(e => String(e.id) === String(examId));
+  let isArchive = false;
+  
+  if (!exam) {
+    // جستجو در آرشیو
+    for (const key in historyDB) {
+      if (historyDB[key].exams) {
+        const found = historyDB[key].exams.find(e => String(e.id) === String(examId));
+        if (found) {
+          exam = found;
+          isArchive = true;
+          break;
+        }
+      }
+    }
+  }
+
+  if (!exam) { toast('آزمون پیدا نشد!'); return; }
+  
+  // ساخت متن جواب‌ها
+  let html = '';
+  exam.questions.forEach((q, qIdx) => {
+    html += `<div class="test-question-item">
+      <div class="test-q-title">سوال ${toPersianNum(qIdx+1)}: ${escapeHtml(q.text)}</div>`;
+      
+    // نمایش پاسخ کاربر
+    if (exam.userAnswers && exam.userAnswers[qIdx]) {
+      const uAns = exam.userAnswers[qIdx];
+      if (uAns.type === 'multiple') {
+        const isCorrect = uAns.value === q.correctIdx;
+        html += `<div class="archive-exam-ans ${isCorrect ? 'correct' : ''}" style="margin-bottom:8px;">
+          جواب شما: ${escapeHtml(q.options[uAns.value])} ${isCorrect ? '✅' : '❌'}
+          ${!isCorrect ? `<br><small style="color:var(--text-dim)">جواب صحیح: ${escapeHtml(q.options[q.correctIdx])}</small>` : ''}
+        </div>`;
+      } else {
+        html += `<div class="archive-exam-ans" style="margin-bottom:8px;">
+          جواب شما: ${escapeHtml(uAns.value)}
+        </div>`;
+      }
+    } else {
+      html += `<div class="archive-exam-ans" style="margin-bottom:8px; opacity:0.5;">جواب داده نشده</div>`;
+    }
+    
+    // نمایش پاسخ صحیحی که طراح نوشته (اگه نوشته باشه)
+    if (q.correctAnswerText) {
+      html += `<div class="archive-exam-ans correct" style="margin-top:5px;">
+        ✍️ <b>پاسخ صحیح (طراح):</b> ${escapeHtml(q.correctAnswerText)}
+      </div>`;
+    }
+    html += `</div>`;
+  });
+  
+  document.getElementById('modalTitle').textContent = '👁️ پاسخ‌های آزمون: ' + exam.name;
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function deleteExam(idx) {
+  if(!confirm('این آزمون پاک بشه؟')) return;
+  state.exams.splice(idx, 1);
+  saveState();
+  renderExamCards();
+  toast('🗑️ آزمون پاک شد');
+}
+
+/* ============================================================
+   TAKING EXAM LOGIC
+   ============================================================ */
+function startExamTaking(idx, fromArchiveKey = null) {
+  currentExamTaking = state.exams[idx];
+  currentExamTakingKey = fromArchiveKey; // اگه از آرشیو باشه، کلیدش ذخیره میشه
+  userAnswers = {};
+  
+  document.getElementById('examModalTitle').textContent = '📝 آزمون: ' + currentExamTaking.name;
+  
+  let html = '';
+  currentExamTaking.questions.forEach((q, qIdx) => {
+    html += `<div class="test-question-item">
+      <div class="test-q-title">سوال ${toPersianNum(qIdx+1)}: ${escapeHtml(q.text)}</div>`;
+      
+    if(q.type === 'multiple') {
+      html += `<div class="test-q-options">`;
+      q.options.forEach((opt, oIdx) => {
+        html += `<label>
+          <input type="radio" name="q_${qIdx}" value="${oIdx}" onchange="recordAnswer(${qIdx}, ${oIdx})">
+          ${escapeHtml(opt)}
+        </label>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="test-q-input">
+        <input type="text" placeholder="جواب خود را بنویسید..." oninput="recordEssayAnswer(${qIdx}, this.value)">
+      </div>`;
+    }
+    html += `</div>`;
+  });
+  
+  document.getElementById('examModalBody').innerHTML = html;
+  document.getElementById('examModalOverlay').classList.add('show');
+}
+
+function recordAnswer(qIdx, oIdx) {
+  userAnswers[qIdx] = { type: 'multiple', value: oIdx };
+}
+
+function recordEssayAnswer(qIdx, text) {
+  userAnswers[qIdx] = { type: 'essay', value: text };
+}
+
+function closeExamModal() {
+  document.getElementById('examModalOverlay').classList.remove('show');
+  currentExamTaking = null;
+  currentExamTakingKey = null;
+}
+
+function submitExamAnswers() {
+  if(!currentExamTaking) return;
+  
+  if (currentExamTakingKey) {
+    // اگر از آرشیو داریم جواب می‌دیم:
+    const data = historyDB[currentExamTakingKey];
+    const examInArchive = data.exams.find(e => e.id === currentExamTaking.id);
+    if (examInArchive) {
+      examInArchive.userAnswers = JSON.parse(JSON.stringify(userAnswers));
+      examInArchive.isCompleted = true;
+      saveHistoryDB();
+      renderHistory(); 
+      if (document.getElementById('modalOverlay').classList.contains('show')) {
+        viewFullHistory(currentExamTakingKey); 
+      }
+    }
+  } else {
+    // اگر از صفحه اصلی داریم جواب می‌دیم:
+    currentExamTaking.userAnswers = JSON.parse(JSON.stringify(userAnswers));
+    currentExamTaking.isCompleted = true;
+    saveState();
+    renderExamCards();
+  }
+  
+  closeExamModal();
+  toast('✅ جواب‌ها ذخیره شد!');
+}
+
+/* ============================================================
    HISTORY & DATABASE LOGIC
    ============================================================ */
 function archiveCurrentDay(showToast = false, customState = null) {
@@ -1957,16 +2396,19 @@ function archiveCurrentDay(showToast = false, customState = null) {
                   (dataToSave.sleep && dataToSave.sleep.start) ||
                   (dataToSave.water > 0) ||
                   (dataToSave.mood) ||
-                  (dataToSave.reminders && dataToSave.reminders.length > 0);
+                  (dataToSave.reminders && dataToSave.reminders.length > 0) ||
+                  (dataToSave.exams && dataToSave.exams.length > 0);
 
   if(!hasData && !showToast) return;
 
   const dateKey = dataToSave.date; 
   const remindersSnapshot = (dataToSave.reminders || []).map(r => ({...r}));
+  const examsSnapshot = (dataToSave.exams || []).map(e => ({...e}));
 
   historyDB[dateKey] = {
     ...JSON.parse(JSON.stringify(dataToSave)),
-    reminders: remindersSnapshot
+    reminders: remindersSnapshot,
+    exams: examsSnapshot
   };
   
   saveHistoryDB();
@@ -2016,6 +2458,7 @@ function renderHistory() {
     const hasTodos = totalTodos > 0;
     const hasPriority = data.topPriority && data.topPriority.trim();
     const hasDeepWork = data.deepWork && data.deepWork.trim();
+    const hasExams = data.exams && data.exams.length > 0;
     
     const pendingReminders = (data.reminders || []).filter(r => !r.done);
     const pendingRemindersCount = pendingReminders.length;
@@ -2042,6 +2485,19 @@ function renderHistory() {
       </div>`;
     }
 
+    let examsHTML = '';
+    if (hasExams) {
+      examsHTML = `<div style="display:flex; flex-direction:column; gap:6px; margin-top:5px;">`;
+      data.exams.forEach(e => {
+        const icon = e.isCompleted ? '✅' : '⏳';
+        examsHTML += `<div style="background:rgba(255,255,255,0.03); padding:5px 8px; border-radius:6px; font-size:0.8rem; display:flex; justify-content:space-between; align-items:center;">
+          <span>📄 ${escapeHtml(e.name)} (${toPersianNum(e.questions.length)} سوال)</span>
+          ${e.isCompleted ? '<span style="color:var(--green-soft);">انجام شد</span>' : '<span style="color:var(--gold);">در انتظار</span>'}
+        </div>`;
+      });
+      examsHTML += `</div>`;
+    }
+
     const div = document.createElement('div');
     div.className = 'history-item';
     div.innerHTML = `
@@ -2065,9 +2521,11 @@ function renderHistory() {
         ${hasSessions ? `<div class="h-stat-tag"><span>🎯 جلسه مطالعه</span><span class="val">${toPersianNum(studySessions)}</span></div>` : ''}
         ${hasWater ? `<div class="h-stat-tag"><span>💧 آب</span><span class="val">${toPersianNum(data.water)}</span></div>` : ''}
         ${hasSleep ? `<div class="h-stat-tag"><span>😴 خواب</span><span class="val">${data.sleep.start}-${data.sleep.end}</span></div>` : ''}
+        ${hasExams ? `<div class="h-stat-tag"><span>📝 آزمون</span><span class="val">${toPersianNum(data.exams.length)}</span></div>` : ''}
       </div>
 
       ${todoPreviewHTML}
+      ${examsHTML}
 
       <div class="history-actions">
         <button class="history-btn view" onclick="viewFullHistory('${key}')">👁️ مشاهده کامل</button>
@@ -2087,6 +2545,59 @@ function viewFullHistory(key) {
   document.getElementById('modalTitle').textContent = '📄 گزارش کامل — ' + formatJalaliFull(dateObj);
   
   let html = '';
+
+  if(data.exams && data.exams.length > 0) {
+    html += `<div class="report-section">
+      <div class="report-section-title">📝 آزمون‌های برگزار شده</div>
+      <div class="report-content" style="max-height: 300px; overflow-y: auto;">`;
+    
+    data.exams.forEach(exam => {
+      html += `<div class="archive-exam-item">
+        <div class="archive-exam-title" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>📄 ${escapeHtml(exam.name)}</span>
+          ${!exam.isCompleted ? `<button class="btn btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="startExamTakingFromArchive('${key}', '${exam.id}')">📝 شرکت در آزمون</button>` : ''}
+        </div>`;
+      
+      if (exam.isCompleted) {
+        exam.questions.forEach((q, qIdx) => {
+          html += `<div class="archive-exam-q" style="margin-top:5px;">
+            <b>سوال ${toPersianNum(qIdx+1)}:</b> ${escapeHtml(q.text)}
+          </div>`;
+          
+          // نمایش پاسخ کاربر
+          if(exam.userAnswers && exam.userAnswers[qIdx]) {
+            const uAns = exam.userAnswers[qIdx];
+            if (uAns.type === 'multiple') {
+              const isCorrect = uAns.value === q.correctIdx;
+              html += `<div class="archive-exam-ans ${isCorrect ? 'correct' : ''}">
+                جواب شما: ${escapeHtml(q.options[uAns.value])} ${isCorrect ? '✅' : '❌'}
+                ${!isCorrect ? `<br><small style="color:var(--text-dim)">جواب صحیح: ${escapeHtml(q.options[q.correctIdx])}</small>` : ''}
+              </div>`;
+            } else {
+              html += `<div class="archive-exam-ans">
+                جواب شما: ${escapeHtml(uAns.value)}
+              </div>`;
+            }
+          } else {
+            html += `<div class="archive-exam-ans" style="opacity:0.5;">جواب داده نشده</div>`;
+          }
+
+          // نمایش پاسخ صحیحی که طراح نوشته (اگه نوشته باشه)
+          if (q.correctAnswerText) {
+            html += `<div class="archive-exam-ans correct" style="margin-top:2px;">
+              ✍️ <b>پاسخ صحیح (طراح):</b> ${escapeHtml(q.correctAnswerText)}
+            </div>`;
+          }
+        });
+      } else {
+        html += `<div style="font-size:0.8rem; color:var(--gold); margin-top:5px;">این آزمون هنوز انجام نشده است.</div>`;
+      }
+      
+      html += `</div>`;
+    });
+    
+    html += `</div></div>`;
+  }
 
   const hasWeekly = data.weekly && data.weekly.some(w => w && w.trim());
   if(hasWeekly) {
@@ -2226,6 +2737,47 @@ function viewFullHistory(key) {
 
   document.getElementById('modalBody').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('show');
+}
+
+// این تابع از داخل مودال آرشیو فراخوانی میشه
+function startExamTakingFromArchive(archiveKey, examId) {
+  const data = historyDB[archiveKey];
+  if(!data || !data.exams) return;
+  
+  const examIdx = data.exams.findIndex(e => String(e.id) === String(examId));
+  if(examIdx === -1) return;
+  
+  // کپی آزمون برای انجام
+  currentExamTaking = JSON.parse(JSON.stringify(data.exams[examIdx]));
+  currentExamTakingKey = archiveKey;
+  userAnswers = {};
+  
+  document.getElementById('examModalTitle').textContent = '📝 آزمون: ' + currentExamTaking.name;
+  
+  let html = '';
+  currentExamTaking.questions.forEach((q, qIdx) => {
+    html += `<div class="test-question-item">
+      <div class="test-q-title">سوال ${toPersianNum(qIdx+1)}: ${escapeHtml(q.text)}</div>`;
+      
+    if(q.type === 'multiple') {
+      html += `<div class="test-q-options">`;
+      q.options.forEach((opt, oIdx) => {
+        html += `<label>
+          <input type="radio" name="q_${qIdx}" value="${oIdx}" onchange="recordAnswer(${qIdx}, ${oIdx})">
+          ${escapeHtml(opt)}
+        </label>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="test-q-input">
+        <input type="text" placeholder="جواب خود را بنویسید..." oninput="recordEssayAnswer(${qIdx}, this.value)">
+      </div>`;
+    }
+    html += `</div>`;
+  });
+  
+  document.getElementById('examModalBody').innerHTML = html;
+  document.getElementById('examModalOverlay').classList.add('show');
 }
 
 function toggleHistoryReminder(key, reminderIdx) {
@@ -2596,9 +3148,19 @@ function toggleHabit(id){
    SUBJECTS
    ============================================================ */
 const subjects = [
-  'ریاضی ۱','هندسه ۱','فیزیک ۱','شیمی ۱','زیست‌شناسی ۱','فارسی ۱',
-  'نگارش ۱','عربی ۱','دین و زندگی ۱','زبان انگلیسی ۱','جغرافیا','تاریخ',
-  'کارگاه کارآفرینی','آمادگی دفاعی'
+  'ریاضی ۱','حسابان ۱','حسابان ۲',
+  'هندسه ۱','هندسه ۲','هندسه ۳',
+  'آمار و احتمال','ریاضیات گسسته',
+  'فیزیک ۱','فیزیک ۲','فیزیک ۳',
+  'شیمی ۱','شیمی ۲','شیمی ۳',
+  'زیست‌شناسی ۱',
+  'فارسی ۱','فارسی ۲','فارسی ۳',
+  'نگارش ۱','نگارش ۲','نگارش ۳',
+  'عربی ۱','عربی، زبان قرآن ۲','عربی، زبان قرآن ۳',
+  'دین و زندگی ۱','دین و زندگی ۲','دین و زندگی ۳',
+  'زبان انگلیسی ۱','زبان انگلیسی ۲','زبان انگلیسی ۳',
+  'جغرافیا','تاریخ','تاریخ معاصر ایران',
+  'کارگاه کارآفرینی','آمادگی دفاعی','انسان و محیط زیست','هویت اجتماعی','سلامت و بهداشت'
 ];
 
 function renderSubjects(){
@@ -3067,6 +3629,7 @@ function resetDay(){
   state.deepWork = '';
   state.topPriority = '';
   state.achievements = [];
+  state.exams = [];
   state.date = new Date().toDateString();
   
   renderAll();
@@ -3096,6 +3659,35 @@ function generateReportFromData(data, dateObj) {
   lines.push(`📅 تاریخ: ${dateStr}`);
   lines.push(`👨‍🎓 پایه: دهم ریاضی`);
   lines.push('');
+
+  if(data.exams && data.exams.length > 0) {
+    lines.push('📝 آزمون‌های برگزارشده');
+    lines.push('┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈');
+    data.exams.forEach(exam => {
+      lines.push(`📄 ${exam.name}`);
+      if (exam.isCompleted) {
+        exam.questions.forEach((q, qIdx) => {
+          lines.push(`   سوال ${toPersianNum(qIdx+1)}: ${q.text}`);
+          if(q.type === 'multiple' && exam.userAnswers && exam.userAnswers[qIdx]) {
+            const uAns = exam.userAnswers[qIdx];
+            const isCorrect = uAns.value === q.correctIdx;
+            lines.push(`      جواب شما: ${q.options[uAns.value]} ${isCorrect ? '✅' : '❌'}`);
+            if(!isCorrect) lines.push(`      جواب صحیح: ${q.options[q.correctIdx]}`);
+          } else if(q.type === 'essay' && exam.userAnswers && exam.userAnswers[qIdx]) {
+            lines.push(`      جواب شما: ${exam.userAnswers[qIdx].value}`);
+          } else {
+            lines.push(`      جواب داده نشده`);
+          }
+          if (q.correctAnswerText) {
+            lines.push(`      ✍️ پاسخ صحیح (طراح): ${q.correctAnswerText}`);
+          }
+        });
+      } else {
+        lines.push(`   (این آزمون هنوز انجام نشده است)`);
+      }
+      lines.push('');
+    });
+  }
 
   lines.push('🎯 اهداف هفته');
   lines.push('┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈');
@@ -3405,6 +3997,7 @@ function renderAll(){
   restoreSleep();
   restoreWeekly();
   restoreTextFields();
+  renderExamCards(); // رندر آزمون‌ها
   updateDateHeader();
   renderHistory();
   document.getElementById('customMinutes').value = state.timerMinutes;
